@@ -50,7 +50,7 @@ The published study integrates ADS-B aircraft observations from the OpenSky Netw
 Create and activate a Python environment, then install the dependencies:
 
 ```bash
-pip install -r requirements.txt
+pip install -e ".[dev]"
 ```
 
 Run the synthetic demonstration from the repository root:
