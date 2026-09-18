@@ -58,11 +58,11 @@ def main() -> None:
     weather_seconds = weather_risk_at_centroid(
         storms,
         centroid,
-        max_risk_seconds=180.0,
+        max_risk_seconds=1800.0,
     )
 
     air_score = risk_probability(collision.risk_seconds, 180.0)
-    weather_score = risk_probability(weather_seconds, 180.0)
+    weather_score = risk_probability(weather_seconds, 1800.0)
     combined_score = combine_risk_probabilities(weather_score, air_score)
 
     print(f"Grid centroids: {len(grid):,}")
