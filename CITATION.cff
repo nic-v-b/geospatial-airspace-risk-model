@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software or methodology, please cite the associated paper."
+title: "Geospatial Airspace Risk Model"
+type: software
+authors:
+  - family-names: "Vincent-Boulay"
+    given-names: "Nicolas"
+repository-code: "https://github.com/nic-v-b/geospatial-airspace-risk-model"
+version: "0.1.0"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Vincent-Boulay"
+      given-names: "Nicolas"
+    - family-names: "Marsden"
+      given-names: "Catharine"
+  title: "A Geospatial Approach to Modeling Airspace Risk Factors"
+  journal: "Journal of Open Aviation Science"
+  volume: 3
+  issue: 1
+  year: 2025
+  doi: "10.59490/joas.2025.7402"
