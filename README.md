@@ -67,7 +67,7 @@ pytest -q
 
 ## Relationship to the published study
 
-This repository is a cleaned **reference implementation** of the core methodology, not a bit-for-bit archival snapshot of the original development repository. The original research code subsequently evolved as part of a larger PhD airspace-modeling project. The implementation here intentionally isolates the concepts needed to understand and exercise the paper methodology without importing later thesis-specific experiment orchestration.
+This repository is a **reference implementation** of the core methodology presented in the paper. The original research code subsequently evolved as part of a larger PhD airspace modeling project.
 
 See `docs/RESEARCH_CODE_PROVENANCE.md` for the provenance boundary and `docs/REPRODUCIBILITY.md` for the distinction between the synthetic demonstration and reproduction of the full paper case study.
 
