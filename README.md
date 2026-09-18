@@ -12,7 +12,7 @@ This repository provides a compact, reproducible implementation of the paper's c
 The published study integrates ADS-B aircraft observations from the OpenSky Network and weather-radar information from NOAA. Those source datasets are not redistributed here. Instead, a deterministic synthetic example is included so the computational concepts can be exercised without external services or large research datasets.
 
 <p align="center">
-  <img src="docs/figures/geospatial_airspace_model_methodology.png" alt="Main components of the geospatial airspace model" width="900">
+  <img src="docs/1.jpg" alt="Main components of the geospatial airspace model" width="900">
 </p>
 
 <p align="center"><em>Figure 1. Main components of the geospatial airspace model. Reproduced from Vincent-Boulay and Marsden (2025), <a href="https://doi.org/10.59490/joas.2025.7402">A Geospatial Approach to Modeling Airspace Risk Factors</a>, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</em></p>
@@ -47,8 +47,7 @@ The published study integrates ADS-B aircraft observations from the OpenSky Netw
 │   ├── test_grid.py
 │   └── test_risk.py
 └── docs/
-    ├── figures/
-    │   └── geospatial_airspace_model_methodology.png
+    ├── 1.jpg
     ├── REPRODUCIBILITY.md
     └── RESEARCH_CODE_PROVENANCE.md
 ```
