@@ -63,10 +63,15 @@ def test_weather_and_combined_scores_are_bounded():
         ],
         centroid=(0.0, 0.0, 0.0),
     )
-    weather = risk_probability(weather_seconds, 180.0)
+    weather = risk_probability(weather_seconds, 1800.0)
     air = risk_probability(90.0, 180.0)
     combined = combine_risk_probabilities(weather, air)
 
     assert 0.0 <= weather <= 1.0
     assert 0.0 <= combined <= 1.0
     assert combined >= max(weather, air)
+
+
+def test_paper_probability_cutoffs():
+    assert math.isclose(risk_probability(900.0, 1800.0), 0.5)
+    assert math.isclose(risk_probability(90.0, 180.0), 0.5)

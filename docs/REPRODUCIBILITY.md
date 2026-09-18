@@ -18,7 +18,7 @@ From the repository root:
     python -m examples.run_synthetic_demo
     pytest -q
 
-The demo constructs a small 3D grid, evaluates an aircraft pair and a moving storm cell at one centroid, converts the time-based metrics to bounded risk scores, and combines the two risks.
+The demo constructs a small 3D grid, evaluates an aircraft pair and a moving storm cell at one centroid, converts the time-based metrics to bounded risk scores using the paper's 180 s air-traffic and 1800 s weather zero-risk cutoffs, and combines the two risks.
 
 ## Full paper case study
 
