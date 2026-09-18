@@ -1,0 +1,67 @@
+name: Extract published paper figure
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    if: github.head_ref == 'add-paper-figure'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download paper and extract Figure 1
+        run: |
+          python -m pip install --quiet pymupdf pillow
+          curl -L --fail --retry 3 -A "Mozilla/5.0"             "https://files.core.ac.uk/download/641946213.pdf"             -o /tmp/paper.pdf
+          python - <<'PY'
+          import fitz
+          from pathlib import Path
+
+          pdf_path = "/tmp/paper.pdf"
+          out_path = Path("docs/figures/geospatial_airspace_model_methodology.png")
+          out_path.parent.mkdir(parents=True, exist_ok=True)
+
+          doc = fitz.open(pdf_path)
+          target = "Main components of the geospatial airspace model"
+          for page_number, page in enumerate(doc):
+              hits = page.search_for(target)
+              if not hits:
+                  continue
+
+              caption = hits[0]
+              # The published Figure 1 is immediately above its caption.
+              # Keep the crop deliberately generous horizontally while excluding
+              # surrounding manuscript text.
+              clip = fitz.Rect(
+                  35,
+                  max(0, caption.y0 - 205),
+                  page.rect.width - 35,
+                  max(0, caption.y0 - 5),
+              )
+              pix = page.get_pixmap(matrix=fitz.Matrix(3, 3), clip=clip, alpha=False)
+              pix.save(out_path)
+              print(f"Extracted Figure 1 from PDF page {page_number + 1}: {out_path}")
+              print(f"Crop points: {clip}")
+              print(f"Output pixels: {pix.width}x{pix.height}")
+              break
+          else:
+              raise RuntimeError("Could not locate Figure 1 caption in published PDF.")
+          PY
+      - name: Commit extracted figure to PR branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/figures/geospatial_airspace_model_methodology.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Add published methodology figure [skip ci]"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
